@@ -17,11 +17,19 @@ export class ProdutoService {
     }
 
     async listar(): Promise<Produto[]> {
-        return await this.repository.find();
+        return await this.repository.find({
+            relations:{categoria:true}
+        });
     }
 
     async buscarPorId(id: number): Promise<Produto> {
-        let produto = await this.repository.findOneBy({id:id});
+        let produto = await this.repository.findOne({
+            where: {id:id},
+            relations:{
+                categoria:true
+            }
+        }
+        );
         if(!produto) {
             throw({id: 404, msg:"Produto nao encontrado!"})
         }
