@@ -1,6 +1,5 @@
 import { Repository } from "typeorm";
 import { Produto } from "../entity/produto";
-import { ProdutoRepository } from "../repository/produto-repository";
 
 export class ProdutoService {
     private repository: Repository<Produto>;
